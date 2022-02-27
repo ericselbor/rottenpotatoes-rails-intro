@@ -15,6 +15,7 @@ class MoviesController < ApplicationController
       redirect_to movies_path(params) and return
     end
     @hilite = sort = params[:sort]
+    @movies = Movie.order(sort)
   end
 
   def new
