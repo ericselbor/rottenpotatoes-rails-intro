@@ -7,8 +7,8 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @hilite = params[:sort]
-    @movies = Movie.all.order(@hilite)
+    @clicked = params[:sort] #gets which header is clicked for Part 1
+    @movies = Movie.all.order(@clicked) #sorts by title or release date in ascending order
   end
 
   def new
