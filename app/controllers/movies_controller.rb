@@ -7,10 +7,14 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = @movies.order(params[:sort_by]) if params[:sort_by] != ''
-    session[:sort_by] = params[:sort_by]
-    @title_header = (params[:sort_by]=='title') ? 'hilite bg-warning' : ''
-    @release_date_header = (params[:sort_by]=='release_date') ? 'hilite bg-warning' : ''
+    @movies = Movie.all
+    if params.key?(:sort)
+      session[:sort] = params[:sort]
+    elsif session.key?(:sort)
+      params[:sort] = session[:sort]
+      redirect_to movies_path(params) and return
+    end
+    @hilite = sort = params[:sort]
   end
 
   def new
