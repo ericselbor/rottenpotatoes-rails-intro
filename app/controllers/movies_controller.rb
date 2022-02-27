@@ -8,6 +8,12 @@ class MoviesController < ApplicationController
 
   def index
     @clicked = params[:sort] #gets which header is clicked for Part 1
+    if @clicked == 'title' 
+      @hilite_title = 'hilite'
+    elsif @clicked == 'release_date'
+      @hilite_release_date = 'hilite'
+    end
+    
     @movies = Movie.all.order(@clicked) #sorts by title or release date in ascending order
   end
 
