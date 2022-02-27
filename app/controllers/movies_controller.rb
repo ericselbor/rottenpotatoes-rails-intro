@@ -7,15 +7,8 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
-    if params.key?(:sort)
-      session[:sort] = params[:sort]
-    elsif session.key?(:sort)
-      params[:sort] = session[:sort]
-      redirect_to movies_path(params) and return
-    end
     @hilite = sort = params[:sort]
-    @movies = Movie.order(sort)
+    @movies = Movie.all.order(sort)
   end
 
   def new
