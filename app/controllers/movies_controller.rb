@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
     if params.key?(:ratings)
       @check = params[:ratings].keys || @all_ratings
     end
-    @movies = Movie.order(@clicked).where(rating: @check) #sorts by title or release date in ascending order
+    @movies = Movie.order(@clicked).where(ratings: @check) #sorts by title or release date in ascending order
   end
 
   def new
