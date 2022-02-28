@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
     end
     
     @all_ratings = Movie.all_ratings
-    #@checked= params[:ratings].keys
+    @checked_box = params[:ratings].keys
     @movies = Movie.all.order(@clicked)
   end
 
