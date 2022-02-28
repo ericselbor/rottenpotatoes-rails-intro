@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
   def index
     #@all_ratings = Movie.all_ratings
     @all_ratings = Movie.all_ratings
-    if params.key?(:ratings) && params[:ratings].keys != nil
+    if params.key?(:ratings) && params[:ratings].keys.length > 0
       @box = params[:ratings].keys
     else
       @box = @all_ratings
