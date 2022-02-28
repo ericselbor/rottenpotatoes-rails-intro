@@ -18,6 +18,7 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.all_ratings
     @checked= params[:ratings].keys
     @movies = Movie.all.order(@clicked)
+    
   end
 
   def new
