@@ -22,8 +22,9 @@ class MoviesController < ApplicationController
     elsif @clicked == 'release_date'
       @hilite_release_date = 'hilite'
     end
-  
-    @movies = Movie.order(@clicked).where(rating: @box)
+    
+    @movies_allowed = Movie.where(rating: @box)
+    @movies = @movies_allowed.order(@clicked)
   end
 
   def new
