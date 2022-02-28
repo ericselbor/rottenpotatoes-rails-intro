@@ -7,13 +7,14 @@ class MoviesController < ApplicationController
   end
 
   def index
-    #@all_ratings = Movie.all_ratings
+    #Display checked ratings:
     @all_ratings = Movie.all_ratings
     if params.key?(:ratings)
       @box = params[:ratings].keys
     else
       @box = Movie.all_ratings
     end
+    
     
     @clicked = params[:sort] #gets which header is clicked for Part 1
     if @clicked == 'title' 
@@ -22,7 +23,7 @@ class MoviesController < ApplicationController
       @hilite_release_date = 'hilite'
     end
   
-    @movies = Movie.all.order(@clicked)
+    @movies = Movie.order(@clicked).where(rating: @box)
   end
 
   def new
