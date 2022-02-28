@@ -15,7 +15,16 @@ class MoviesController < ApplicationController
       @hilite_release_date = 'hilite'
     end
     
-    @movies = Movie.all.order(@clicked) #sorts by title or release date in ascending order
+    @all_ratings = Movie.all_ratings
+    @checked= params[:ratings].keys
+    
+    if @checked != nil
+      @UpCaseRating = @checked.map{|rating| rating.upcase}
+      @movie_list = Movie.where(rating: @UpCaseRating)
+      @movies = @movie_list.order(@clicked)
+    else
+      @movies = Movie.all.order(@clicked) #sorts by title or release date in ascending order
+    end
   end
 
   def new
