@@ -15,8 +15,8 @@ class MoviesController < ApplicationController
       @hilite_release_date = 'hilite'
     end
     
-    @all_ratings = Movie.all_ratings
-    @checked= params[:ratings].keys
+    #@all_ratings = Movie.all_ratings
+    #@checked= params[:ratings].keys
     @movies = Movie.all.order(@clicked)
   end
 
