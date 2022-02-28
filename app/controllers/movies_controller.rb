@@ -8,8 +8,8 @@ class MoviesController < ApplicationController
 
   def index
     #@all_ratings = Movie.all_ratings
-    
-    if params.key?(:ratings)
+    @all_ratings = Movie.all_ratings
+    if params.key?(:ratings) && params[:ratings].keys != nil
       @box = params[:ratings].keys
     else
       @box = @all_ratings
@@ -21,8 +21,6 @@ class MoviesController < ApplicationController
     elsif @clicked == 'release_date'
       @hilite_release_date = 'hilite'
     end
-    
-    @all_ratings = Movie.all_ratings
   
     @movies = Movie.all.order(@clicked)
   end
