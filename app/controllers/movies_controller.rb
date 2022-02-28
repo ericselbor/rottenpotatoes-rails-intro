@@ -17,14 +17,7 @@ class MoviesController < ApplicationController
     
     @all_ratings = Movie.all_ratings
     @checked= params[:ratings].keys
-    
-    if @checked != nil
-      @UpCaseRating = @checked.map{|rating| rating.upcase}
-      @movie_list = Movie.where(rating: @UpCaseRating)
-      @movies = @movie_list.order(@clicked)
-    else
-      @movies = Movie.all.order(@clicked) #sorts by title or release date in ascending order
-    end
+    @movies = Movie.all.order(@clicked)
   end
 
   def new
