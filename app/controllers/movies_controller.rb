@@ -16,9 +16,11 @@ class MoviesController < ApplicationController
     end
     
     @all_ratings = Movie.all_ratings
-    @box = Array.new
+    
     if params.key?(:ratings)
       @box = params[:ratings].keys
+    else
+      @box = @all_ratings
     end
   
     @movies = Movie.all.order(@clicked)
