@@ -7,6 +7,7 @@ class MoviesController < ApplicationController
   end
 
   def index
+    @all_ratings = Movie.all_ratings
     @clicked = params[:sort] #gets which header is clicked for Part 1
     if @clicked == 'title' 
       @hilite_title = 'hilite'
@@ -14,7 +15,10 @@ class MoviesController < ApplicationController
       @hilite_release_date = 'hilite'
     end
     
-    @movies = Movie.all.order(@clicked) #sorts by title or release date in ascending order
+    if params.key?(:ratings)
+      @check = params[:ratings].keys || @all_ratings
+    end
+    @movies = Movie.order(@clicked).where(rating: @check) #sorts by title or release date in ascending order
   end
 
   def new
