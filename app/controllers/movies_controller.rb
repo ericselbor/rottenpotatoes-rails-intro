@@ -9,9 +9,6 @@ class MoviesController < ApplicationController
   def index
     #@all_ratings = Movie.all_ratings
     @all_ratings = Movie.all_ratings
-    if params.key?(:ratings)
-      @box = params[:ratings].keys
-    end
     
     @clicked = params[:sort] #gets which header is clicked for Part 1
     if @clicked == 'title' 
