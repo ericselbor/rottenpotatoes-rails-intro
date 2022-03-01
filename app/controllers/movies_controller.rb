@@ -40,6 +40,10 @@ class MoviesController < ApplicationController
     
     @box != nil ? @movies = Movie.with_ratings(@box).order(@clicked) : @movies_allowed = Movie.all.order(@clicked)
     
+    if ((params[:sort] == nil && session[:sort] != nil) || (params[:ratings] == nil && session[:ratings] != nil))
+      flash.keep
+      redirect_to movie_path(:sort => session[:sort], :ratings => session[:sort])
+    end
   end
 
   def new
