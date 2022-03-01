@@ -3,8 +3,8 @@ class Movie < ActiveRecord::Base
         return ['G', 'PG', 'PG-13', 'R']
     end
     
-    def self.with_ratings(ratingsArray)
-        rate = ratingsArray.map{|string| string.upcase}
+    def self.with_ratings(ratings)
+        rate = ratings.map{|string| string.upcase}
         return Movie.where(rating: rate)
     end
 end

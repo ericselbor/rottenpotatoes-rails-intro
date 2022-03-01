@@ -22,12 +22,8 @@ class MoviesController < ApplicationController
       @box = Movie.all_ratings
     end
     
-    #if @box != nil
-      #@box = @box.map{|string| string.upcase}
-    #end
+    @box != nil ? @movies = Movie.with_ratings(@box).order(@clicked) : @movies_allowed = Movie.all.order(@clicked)
     
-    @box != nil ? @movies_allowed = Movie.with_ratings(@box) : @movies_allowed = Movie.all
-    @movies = @movies_allowed.order(@clicked)
   end
 
   def new
