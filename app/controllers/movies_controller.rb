@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
       @box = Movie.all_ratings
     end
     
-    if @box != nil
+    if @box.length() > 0
       @box = @box.map{|string| string.upcase}
     end
     
