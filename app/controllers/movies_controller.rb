@@ -15,6 +15,9 @@ class MoviesController < ApplicationController
       @box = Movie.all_ratings
     end
     
+    if @box != nil
+      @box = @box.map{|string| string.upcase}
+    end
     
     @clicked = params[:sort] #gets which header is clicked for Part 1
     if @clicked == 'title' 
