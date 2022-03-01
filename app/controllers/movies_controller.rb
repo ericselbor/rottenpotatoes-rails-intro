@@ -9,12 +9,14 @@ class MoviesController < ApplicationController
   def index
     #Display checked ratings:
     @all_ratings = Movie.all_ratings
-    @box = params[:ratings].keys
-    
-    if @box.length() > 0
-      @box = @box.map{|string| string.upcase}
+    if params.key?(:ratings)
+      @box = params[:ratings].keys
     else
       @box = Movie.all_ratings
+    end
+    
+    if @box != nil
+      @box = @box.map{|string| string.upcase}
     end
     
     @clicked = params[:sort] #gets which header is clicked for Part 1
@@ -24,8 +26,11 @@ class MoviesController < ApplicationController
       @hilite_release_date = 'hilite'
     end
     
-    @movies_allowed = Movie.where(rating: @box)
-    @movies = @movies_allowed.order(@clicked)
+    @movies_allowed = Movie.all.order(@clicked)
+    @movies = @movies_allowed.where(rating: @box)
+    
+    #@movies_allowed = Movie.where(rating: @box)
+    #@movies = @movies_allowed.order(@clicked)
   end
 
   def new
