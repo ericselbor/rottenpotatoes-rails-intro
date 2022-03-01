@@ -16,20 +16,18 @@ class MoviesController < ApplicationController
     
     #Display checked ratings:
     @all_ratings = Movie.all_ratings
-    if params[:ratings] != nil
+    if params.key?(:ratings)
       @box = params[:ratings].keys
     else
       @box = Movie.all_ratings
     end
     
     #if @box != nil
-    #  @box = @box.map{|string| string.upcase}
+      #@box = @box.map{|string| string.upcase}
     #end
     
-    @movies = Movie.where(rating: @box).order(@clicked)
-    
-    #@movies_allowed = Movie.where(rating: @box)
-    #@movies = @movies_allowed.order(@clicked)
+    @movies_allowed = Movie.where(rating: @box)
+    @movies = @movies_allowed.order(@clicked)
   end
 
   def new
