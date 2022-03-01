@@ -26,8 +26,8 @@ class MoviesController < ApplicationController
       #@box = @box.map{|string| string.upcase}
     #end
     
-    @movies_allowed = Movie.with_ratings(@box).order(@clicked)
-    #@movies = @movies_allowed.order(@clicked)
+    @movies_allowed = Movie.where(rating: @box)
+    @movies = @movies_allowed.order(@clicked)
   end
 
   def new
