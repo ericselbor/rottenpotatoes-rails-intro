@@ -26,7 +26,7 @@ class MoviesController < ApplicationController
       #@box = @box.map{|string| string.upcase}
     #end
     
-    @movies_allowed = Movie.where(rating: @box)
+    @box != nil ? @movies_allowed = Movie.where(rating: @box) : @movies_allowed = Movie.all
     @movies = @movies_allowed.order(@clicked)
   end
 
