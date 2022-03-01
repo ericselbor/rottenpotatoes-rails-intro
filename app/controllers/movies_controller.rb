@@ -7,6 +7,14 @@ class MoviesController < ApplicationController
   end
 
   def index
+    
+    if params.key?(:sort)
+      session[:sort] = params[:sort]
+    elsif session.key?(:sort)
+      params[:sort] = session[:sort]
+      redirect_to movies_path(params) and return
+    end
+  
     @clicked = params[:sort] #gets which header is clicked for Part 1
     if @clicked == 'title' 
       @hilite_title = 'hilite'
@@ -16,6 +24,14 @@ class MoviesController < ApplicationController
     
     #Display checked ratings:
     @all_ratings = Movie.all_ratings
+    
+    if params.key?(:ratings)
+      session[:ratings] = params[:ratings]
+    elsif session.key?(:ratings)
+      params[:ratings] = session[:ratings]
+      redirect_to movies_path(params) and return
+    end
+      
     if params.key?(:ratings)
       @box = params[:ratings].keys
     else
